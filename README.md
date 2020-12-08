@@ -1,2 +1,2 @@
 # OnlineBookReader
-This is a console project for only training purpose for java object oriented programming.
+This is a console project for only training purpose in java object oriented programming.
