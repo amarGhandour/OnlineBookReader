@@ -1,5 +1,17 @@
+import java.util.List;
 
 public class Reader extends User {
+
+	private List<Book> listOfReadingBooks;
+	private List<Session> listOfSessions;
+
+	public List<Book> getListOfReadingBooks() {
+		return listOfReadingBooks;
+	}
+
+	public List<Session> getListOfSessions() {
+		return listOfSessions;
+	}
 
 	@Override
 	public void viewProfile() {
@@ -11,5 +23,12 @@ public class Reader extends User {
 		System.out.println(sb.toString());
 
 	}
+
+	@Override
+	public String toString() {
+		return "Reader [listOfReadingBooks=" + listOfReadingBooks + ", listOfSessions=" + listOfSessions + "]";
+	}
+	
+	
 
 }
