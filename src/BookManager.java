@@ -45,11 +45,18 @@ public class BookManager {
 		book1.setId("1");
 		book1.setName("Intro to programming");
 		book1.setAuthor("mostafa saad");
+		book1.setNumberOfPages("3");
+		String[] book1PagesContent = {"Intro", "to", "programming"};
+		book1.setPages(book1PagesContent);
+	
 
 		Book book2 = new Book();
 		book2.setId("2");
 		book2.setName("Intro to Algo");
 		book2.setAuthor("mohamed shrief");
+		book2.setNumberOfPages("3");
+		String[] book2PagesContent = {"Intro", "to", "Algo"};
+		book2.setPages(book2PagesContent);
 
 		getBooksList().add(book1);
 		getBooksList().add(book2);

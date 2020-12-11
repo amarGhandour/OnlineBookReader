@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Reader extends User {
@@ -5,6 +6,11 @@ public class Reader extends User {
 	private List<Book> listOfReadingBooks;
 	private List<Session> listOfSessions;
 
+	public Reader() {
+		listOfReadingBooks = new ArrayList<>();
+		listOfSessions = new ArrayList<>();
+	}
+	
 	public List<Book> getListOfReadingBooks() {
 		return listOfReadingBooks;
 	}
@@ -22,13 +28,6 @@ public class Reader extends User {
 		sb.trimToSize();
 		System.out.println(sb.toString());
 
-	}
-
-	@Override
-	public String toString() {
-		return "Reader [listOfReadingBooks=" + listOfReadingBooks + ", listOfSessions=" + listOfSessions + "]";
-	}
-	
-	
+	}	
 
 }

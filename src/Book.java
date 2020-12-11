@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -19,6 +20,8 @@ public class Book {
 		author = "";
 		numberOfPages = 0;
 		pages = null;
+		readingSessions = new ArrayList<>();
+		readers = new ArrayList<>();
 	}
 
 	public int getId() {
@@ -53,8 +56,16 @@ public class Book {
 		this.numberOfPages = Integer.parseInt(numberOfPages);
 	}
 
+	public void setPages(String[] pages) {
+		this.pages = pages;
+	}
+
 	public String[] getPages() {
 		return pages;
+	}
+
+	public String getPageContent(int pageNumber) {
+		return pages[pageNumber];
 	}
 
 	public List<Session> getReadingSessions() {
