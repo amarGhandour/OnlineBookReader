@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -64,5 +65,24 @@ public class UserManager {
 		getUsers().add(user2);
 		getUsersNameObjectMap().put(user2.getUsername(), user2);
 
+	}
+	
+	public void addDummyRelationships() {
+		User user = getUsersNameObjectMap().get("amar");
+		if (user instanceof Reader) {
+			((Reader) user).getListOfReadingBooks().add(BookManager.getBookManagerInstance().getBooksIdObjectMap().get(1));
+			((Reader) user).getListOfReadingBooks().get(0).getReaders().add((Reader)user);
+			
+			Session session = new Session();
+			session.setLastReadingDate(LocalDateTime.now());
+			session.setLastReadingPage(1);
+			session.setName("reading Programming");
+			
+			session.setReader((Reader)user);
+			session.setBookReading(((Reader) user).getListOfReadingBooks().get(0));
+			
+			((Reader) user).getListOfSessions().add(session);
+			((Reader) user).getListOfReadingBooks().get(0).getReadingSessions().add(session);
+		}
 	}
 }
