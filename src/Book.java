@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,9 +7,7 @@ public class Book {
 	private String name;
 	private String author;
 	private int numberOfPages;
-	private String[] pages;
-	private List<Session> readingSessions;
-	private List<Reader> readers;
+	private List<String> pages;
 
 	private static Scanner input = new Scanner(System.in);
 
@@ -19,9 +16,7 @@ public class Book {
 		name = "";
 		author = "";
 		numberOfPages = 0;
-		pages = null;
-		readingSessions = new ArrayList<>();
-		readers = new ArrayList<>();
+		pages = new ArrayList<>();
 	}
 
 	public int getId() {
@@ -56,24 +51,16 @@ public class Book {
 		this.numberOfPages = Integer.parseInt(numberOfPages);
 	}
 
-	public void setPages(String[] pages) {
-		this.pages = pages;
-	}
-
-	public String[] getPages() {
+	public List<String> getPages() {
 		return pages;
 	}
 
-	public String getPageContent(int pageNumber) {
-		return pages[pageNumber];
+	public void setPages(List<String> pages) {
+		this.pages = pages;
 	}
 
-	public List<Session> getReadingSessions() {
-		return readingSessions;
-	}
-
-	public List<Reader> getReaders() {
-		return readers;
+	public void setNumberOfPages(int numberOfPages) {
+		this.numberOfPages = numberOfPages;
 	}
 
 	public void read() {
@@ -81,7 +68,7 @@ public class Book {
 		while (true) {
 			System.out.println("Enter book id: ");
 			setId(input.nextLine());
-
+			
 			if (!BookManager.getBookManagerInstance().getBooksIdObjectMap().containsKey(getId())) {
 				break;
 			}
@@ -97,10 +84,9 @@ public class Book {
 		System.out.println("Enter number of pages: ");
 		setNumberOfPages(input.nextLine());
 
-		pages = new String[numberOfPages];
-		for (int pageNumber = 0; pageNumber < getPages().length; pageNumber++) {
+		for (int pageNumber = 0; pageNumber < getNumberOfPages(); pageNumber++) {
 			System.out.printf("Enter content of  page #%d: ", pageNumber + 1);
-			getPages()[pageNumber] = input.nextLine();
+			getPages().add(input.nextLine());
 		}
 
 	}
@@ -108,7 +94,7 @@ public class Book {
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", name=" + name + ", author=" + author + ", numberOfPages=" + numberOfPages
-				+ ", pages=" + Arrays.toString(pages) + "]";
+				+ ", pages=" + pages + "]";
 	}
 
 }

@@ -3,20 +3,20 @@ import java.util.List;
 
 public class Reader extends User {
 
-	private List<Book> listOfReadingBooks;
 	private List<Session> listOfSessions;
 
 	public Reader() {
-		listOfReadingBooks = new ArrayList<>();
 		listOfSessions = new ArrayList<>();
 	}
 	
-	public List<Book> getListOfReadingBooks() {
-		return listOfReadingBooks;
-	}
-
 	public List<Session> getListOfSessions() {
 		return listOfSessions;
+	}
+	
+	public Session addSession(Book book, String sessionName) {
+		Session session = new Session(book, sessionName);
+		getListOfSessions().add(session);
+		return session;
 	}
 
 	@Override
