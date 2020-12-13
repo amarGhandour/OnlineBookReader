@@ -6,20 +6,24 @@ public class Session {
 	private int lastReadingPage;
 	private String name;
 	private Book bookReading;
-	private Reader reader;
-	
 
 	public Session() {
-		lastReadingDate = LocalDateTime.now();
-		lastReadingPage = 1;
+		this(null, "");
 	}
 	
+	public Session(Book book, String sessionName) {
+		setBookReading(book);
+		setLastReadingDate();
+		setLastReadingPage(1);
+		setName(sessionName);
+	}
+
 	public LocalDateTime getLastReadingDate() {
 		return lastReadingDate;
 	}
 
-	public void setLastReadingDate(LocalDateTime lastReadingDate) {
-		this.lastReadingDate = lastReadingDate;
+	public void setLastReadingDate() {
+		this.lastReadingDate = LocalDateTime.now();
 	}
 
 	public int getLastReadingPage() {
@@ -35,15 +39,16 @@ public class Session {
 	}
 
 	public void goNextPage() {
-		if (getBookReading().getPages().length == lastReadingPage)
+		if (getBookReading().getPages().size() == lastReadingPage)
 			return;
 		this.lastReadingPage++;
+	
 	}
 
 	public void goPreviousPage() {
 		if (getLastReadingPage() == 1)
 			return;
-		this.lastReadingPage--;
+		this.lastReadingPage--;	
 	}
 
 	public void setLastReadingPage(int lastReadingPage) {
@@ -54,16 +59,12 @@ public class Session {
 		this.bookReading = bookReading;
 	}
 
-	public void setReader(Reader reader) {
-		this.reader = reader;
-	}
-
 	public Book getBookReading() {
 		return bookReading;
 	}
 
-	public Reader getReader() {
-		return reader;
+	public String getCurrentpageContent() {
+		return getBookReading().getPages().get(lastReadingPage - 1);
 	}
 
 	public void print() {
@@ -77,9 +78,7 @@ public class Session {
 	@Override
 	public String toString() {
 		return "Session [lastReadingDate=" + lastReadingDate + ", lastReadingPage=" + lastReadingPage + ", name=" + name
-				+ ", bookReading=" + bookReading + ", reader=" + reader + "]";
+				+ ", bookReading=" + bookReading + "]";
 	}
-
-	
 
 }

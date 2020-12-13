@@ -5,10 +5,9 @@ public class ReaderFlowController {
 
 	private static ReaderFlowController readerFlowController;
 	private Reader currentReader;
-	private Book currentBook;
 	private Session currentSession;
-	
-	private static Scanner input = new Scanner(System.in); 
+
+	private static Scanner input = new Scanner(System.in);
 
 	private ReaderFlowController() {
 
@@ -59,27 +58,27 @@ public class ReaderFlowController {
 
 	private void makeNewSession() {
 		showBookList();
-		
+
 		int choice = HelperMehtod.readInt(1, BookManager.getBookManagerInstance().getBooksList().size()) - 1;
-		currentBook = BookManager.getBookManagerInstance().getBooksList().get(choice);
-		Session session = new Session();
+		Book readingBook = BookManager.getBookManagerInstance().getBooksList().get(choice);
+
 		System.out.println("Enter session name: ");
-		session.setName(input.nextLine());
-		session.setBookReading(currentBook);
-		session.setReader(currentReader);
+		String sessionName = input.nextLine();
 		
-		currentBook.getReadingSessions().add(session);
-		currentReader.getListOfReadingBooks().add(currentBook);
-		currentReader.getListOfSessions().add(session);
-		
+		currentReader.addSession(readingBook, sessionName);
+
 	}
 
 	private void viewCurrentSessions() {
 		showSessionList();
 
+		if (currentReader.getListOfSessions().isEmpty()) {
+			System.out.println("You don't have any sessions");
+			return;
+		}
+
 		int choice = HelperMehtod.readInt(1, currentReader.getListOfSessions().size()) - 1;
 		currentSession = currentReader.getListOfSessions().get(choice);
-		currentBook = currentSession.getBookReading();
 
 		showSessionMenu();
 
@@ -90,8 +89,8 @@ public class ReaderFlowController {
 
 		while (true) {
 			currentSession.print();
-			System.out.println("\tContent: "+currentBook.getPageContent(currentSession.getLastReadingPage() - 1));
-			
+			System.out.println("\tContent: " + currentSession.getCurrentpageContent());
+
 			int choice = HelperMehtod.showReadMenu(menu);
 			if (choice == 1)
 				currentSession.goNextPage();
@@ -100,7 +99,7 @@ public class ReaderFlowController {
 			else
 				break;
 		}
-
+		currentSession.setLastReadingDate();
 	}
 
 	private void showSessionList() {

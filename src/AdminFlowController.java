@@ -16,7 +16,7 @@ public class AdminFlowController {
 	
 	public void takeControl(String username) {
 		setCurrentUser(UserManager.getUserManager().getUsersNameObjectMap().get(username));
-		System.out.printf("\nWelcome back %s, You are logged in.%n", currentUser.getName());
+		System.out.printf("%nWelcome back %s, You are logged in.%n", currentUser.getName());
 		
 		showAdminMenu();
 	}

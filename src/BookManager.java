@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -36,8 +37,8 @@ public class BookManager {
 	
 	public void printListBooks() {
 		System.out.println("\nBooks list: ");
-		for (Book book: getBooksList())
-			System.out.println(book);
+		for (int i = 0; i < getBooksList().size(); i++)
+			System.out.printf("%d)%s.%n", i + 1, getBooksList().get(i).getName());
 	}
 
 	public void addDummyData() {
@@ -46,7 +47,7 @@ public class BookManager {
 		book1.setName("Intro to programming");
 		book1.setAuthor("mostafa saad");
 		book1.setNumberOfPages("3");
-		String[] book1PagesContent = {"Intro", "to", "programming"};
+		List<String> book1PagesContent = Arrays.asList("Intro", "to", "programming");
 		book1.setPages(book1PagesContent);
 	
 
@@ -55,7 +56,7 @@ public class BookManager {
 		book2.setName("Intro to Algo");
 		book2.setAuthor("mohamed shrief");
 		book2.setNumberOfPages("3");
-		String[] book2PagesContent = {"Intro", "to", "Algo"};
+		List<String> book2PagesContent = Arrays.asList("Intro", "to", "Algo");
 		book2.setPages(book2PagesContent);
 
 		getBooksList().add(book1);
